@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export default function TotalUsers() {
     const [count, setCount] = useState<number | null>(null);
@@ -15,8 +15,12 @@ export default function TotalUsers() {
                 if (!res.ok) throw new Error("Failed to fetch user count");
                 const data = await res.json();
                 setCount(data.count);
-            } catch (err: any) {
-                setError(err.message || "Error fetching user count");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("Error fetching user count");
+                }
             } finally {
                 setLoading(false);
             }

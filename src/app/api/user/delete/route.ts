@@ -5,7 +5,7 @@ import connectDB from "@/lib/mongodb";
 import User from "@/models/user";
 import NoteModel from "@/models/noteModel";
 
-export async function DELETE(request: Request) {
+export async function DELETE() {
   try {
     const session = await getServerSession(authOptions);
 
