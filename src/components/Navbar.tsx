@@ -7,19 +7,10 @@ import ProfileCard from "./Profile-Card";
 import ThemeControl from "./Theme-Control";
 
 export default function Navbar() {
-    const {data: session, status} = useSession();
+    const {data: session} = useSession();
     const isLoggedIn = !!session;
 
     // Optional: Add a loader (or return null if you want to skip UI during loading)
-    if (status === "loading") {
-        return (
-            <div className="navbar bg-black/25 shadow-sm">
-                <div className="navbar-start px-4">
-                    <span className="loading loading-spinner text-primary"></span>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="navbar bg-black/25 shadow-sm">
@@ -36,11 +27,13 @@ export default function Navbar() {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li><Link href={"/public"}>Home</Link></li>
+                        <li><Link href={"/pages/about"}>About</Link></li>
                         <li><Link href={"/pages/notes"}>Notes</Link></li>
                     </ul>
                 </div>
                 <Link href="/" className="flex gap-2 text-xl">
-                    <Image src="/Images/favleaf_v1.png" alt="Logo" width={24} height={24}/>
+                    <Image src="/Images/favleaf_v1.png" alt="Logo" width={24} height={24}
+                           style={{width: "auto", height: "auto"}}/>
                     <h1 className="hidden sm:block">
                         Note Master
                     </h1>
